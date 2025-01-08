@@ -98,7 +98,7 @@ li .delete-btn:hover {
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
-  }
+}
 /*  
 .filter-dropdown {
     padding: 10px;
@@ -130,7 +130,7 @@ li .delete-btn:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
+}
 
 #deadline {
     padding: 10px;
@@ -144,14 +144,36 @@ li .delete-btn:hover {
     margin-bottom: 15px; 
     outline: none; 
     transition: border 0.3s ease, box-shadow 0.3s ease;
-  }
+}
   
   #deadline:focus {
     border: 1px solid #007bff; /* Blue border on focus */
     box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Glow effect on focus */
     background-color: #fff; /* Bright background when focused */
-  }
-  
+}
+
+.priority-high {
+    background-color: #e5838b; /* Light red */
+    border: 1px solid #f5c6cb;
+}
+
+.priority-medium {
+    background-color: #fff3cd; /* Light yellow */
+    border: 1px solid #ffeeba;
+}
+
+.priority-low {
+    background-color: #d4edda; /* Light green */
+    border: 1px solid #c3e6cb;
+}
+
+.completed {
+    text-decoration: line-through; /* Strikethrough for completed tasks */
+    color: #aaa; /* Dim the color */
+}
+
+
+
 /*by priority, new to old, alphabetical order
 not show buttons when theres no task yet added
 different dates
