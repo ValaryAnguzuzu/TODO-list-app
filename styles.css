@@ -30,17 +30,18 @@ h1 {
     gap: 10px;
     margin-bottom: 20px;
     
+    
 }
 
 .todo-input input {
-    width: 70%;
-    padding: 10px;
+    width: 75%;
+    padding: 15px;
     border: 1px solid green;
     border-radius: 4px;
 }
 
 .todo-input button {
-    padding: 10px 15px;
+    padding: 15px;
     border: none;
     background: green;
     color: #fff;
@@ -50,11 +51,6 @@ h1 {
 
 .todo-input button:hover {
     background: rgb(172, 51, 51);
-}
-
-ul {
-    list-style: none;
-    padding: 0;
 }
 
 li {
@@ -71,7 +67,7 @@ li {
 li .delete-btn {
     color: #ff4d4f;
     cursor: pointer;
-    border: none;
+    border: 1px solid #8a6565;
     background: none;
 }
 
@@ -99,37 +95,23 @@ li .delete-btn:hover {
     gap: 10px;
     margin-bottom: 20px;
 }
-/*  
-.filter-dropdown {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-}
-*/
 
 .filter-btn {
     padding: 8px 15px;
     border: none;
     border-radius: 4px;
-    background: #ddd;
+    background: #fff;
     cursor: pointer;
 }
 
 .filter-btn.active {
-    background: #29892c;
+    background: green;
     color: white;
 }
 
 .filter-btn:hover {
     background: rgb(172, 51, 51);
-}
-
-#priority {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    color: white;
 }
 
 #deadline {
@@ -152,30 +134,59 @@ li .delete-btn:hover {
     background-color: #fff; /* Bright background when focused */
 }
 
-.priority-high {
-    background-color: #e5838b; /* Light red */
-    border: 1px solid #f5c6cb;
+/* General priority dropdown styling */
+#priority {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-.priority-medium {
-    background-color: #fff3cd; /* Light yellow */
-    border: 1px solid #ffeeba;
-}
-
-.priority-low {
-    background-color: #d4edda; /* Light green */
-    border: 1px solid #c3e6cb;
-}
 
 .completed {
     text-decoration: line-through; /* Strikethrough for completed tasks */
-    color: #aaa; /* Dim the color */
+    color: rgb(52, 48, 48); /* Dim the color */
 }
 
+.priority-icon {
+    
+    margin-left: 10px; /* Add spacing between the task text and the priority label */
+}
 
+.sort-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#sort-tasks {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#sort-btn {
+    padding: 8px 12px;
+    background-color: #29892c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#sort-btn:hover {
+    background-color: #1e6722;
+}
 
 /*by priority, new to old, alphabetical order
 not show buttons when theres no task yet added
 different dates
 times
 calendar*/
+

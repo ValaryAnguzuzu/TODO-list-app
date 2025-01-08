@@ -3,6 +3,8 @@ const input = document.getElementById('todo-input');
 const addButton = document.getElementById('add-btn');
 const todoList = document.getElementById('todo-list');
 const clearAllButton = document.getElementById('clear-all');
+const sortDropdown = document.getElementById('sort-tasks');
+const sortButton = document.getElementById('sort-btn');
 
 
 // Function to create a new task element (Consolidated repetitive task creation logic)
@@ -19,10 +21,23 @@ function createTaskElement(taskText, priority, isCompleted = false) {
 
     listItem.appendChild(checkbox); // Add the checkbox to the list item
 
-    // Add the task text along with its priority
+    // Add the task text
     const taskTextSpan = document.createElement('span');
-    taskTextSpan.textContent = `${taskText} [${priority.toUpperCase()}]`;
+    taskTextSpan.textContent = taskText;
     listItem.appendChild(taskTextSpan);
+
+    // Add priority display
+    const priorityIcon = document.createElement('span'); // Create a span for priority icon
+    if (priority === 'low') {
+        priorityIcon.textContent = '🟢 Low';
+    } else if (priority === 'medium') {
+        priorityIcon.textContent = '🟡 Medium';
+    } else if (priority === 'high') {
+        priorityIcon.textContent = '🔴 High';
+    }
+    priorityIcon.classList.add('priority-icon'); 
+    priorityIcon.style.marginLeft = '5px';
+    listItem.appendChild(priorityIcon); // Append the priority icon to the task
 
     // Store the priority as a dataset attribute
     listItem.dataset.priority = priority;
@@ -164,7 +179,7 @@ function updatePendingMessage() {
 
   const pendingMessage = document.createElement('p');
   pendingMessage.id = 'pending-message';
-  pendingMessage.textContent = `You have ${pendingCount} ${pendingCount === 1 ? 'task' : 'tasks'} remaining`;
+  pendingMessage.textContent = `You have ${pendingCount} ${pendingCount === 1 ? 'task' : 'tasks'} pending`;
   pendingMessage.style.textAlign = 'center';
   pendingMessage.style.color = 'purple';
 
@@ -184,8 +199,8 @@ function updateCompletedMessage() {
   completedMessage.id = 'completed-message';
   completedMessage.textContent =
       completedCount === 0
-          ? 'Sorry🥺 You have no completed tasks'
-          : `You have ${completedCount} ${completedCount === 1 ? 'task' : 'tasks'} completed`;
+          ? 'Sorry🥺 You have no completed tasks!'
+          : `You have ${completedCount} ${completedCount === 1 ? 'task' : 'tasks'} completed🎊🎉`;
   completedMessage.style.textAlign = 'center';
   completedMessage.style.color = 'purple';
 
@@ -227,6 +242,33 @@ function filterTasks(filter) {
   updateMessages(); // Update messages dynamically based on the filter
 }
 
+// Sorting function
+function sortTasks() {
+    const tasks = Array.from(todoList.querySelectorAll('li'));
+
+    // Get the selected sort option
+    const sortBy = sortDropdown.value;
+
+    if (sortBy === 'priority') {
+        // Sort by priority (High > Medium > Low)
+        tasks.sort((a, b) => {
+            const priorityOrder = { high: 1, medium: 2, low: 3 };
+            return priorityOrder[a.dataset.priority] - priorityOrder[b.dataset.priority];
+        });
+    } else if (sortBy === 'alphabetical') {
+        // Sort by alphabetical order
+        tasks.sort((a, b) => {
+            const textA = a.querySelector('span').textContent.toLowerCase();
+            const textB = b.querySelector('span').textContent.toLowerCase();
+            return textA.localeCompare(textB);
+        });
+    }
+
+  // Clear the list and append sorted tasks
+  todoList.innerHTML = '';
+  tasks.forEach(task => todoList.appendChild(task));
+}
+
 // Add filter button event listeners
 const filterButtons = document.querySelectorAll('.filter-btn');
 filterButtons.forEach((btn) => {
@@ -236,6 +278,8 @@ filterButtons.forEach((btn) => {
       filterTasks(event.target.id.replace('filter-', '')); // Filter tasks based on the button's ID
   });
 });
+
+sortButton.addEventListener('click', sortTasks);
 
 // Load tasks and update messages on page load
 document.addEventListener('DOMContentLoaded', () => {
