@@ -14,11 +14,6 @@
         
         <div class="todo-input">
             <input type="text" id="todo-input" placeholder="Add a new task">
-            <button id="add-btn">Add</button>
-        </div>
-  <!--filter buttons-->
-
-        <div class="filters">
             <div class="priority-container">
                 <label for="priority">Add Priority: </label>
                 <select id="priority">
@@ -27,9 +22,14 @@
                     <option value="high">High</option>
                 </select>
             </div>
+            <button id="add-btn">Add</button>
+        </div>
+  <!--filter buttons-->
+
+        <div class="filters">
+            <button id="filter-all" class="filter-btn active">All tasks</button>
             <button id="filter-pending" class="filter-btn">Pending tasks</button>
             <button id="filter-completed" class="filter-btn">Completed tasks</button>
-            <button id="filter-all" class="filter-btn active">All tasks</button>
         </div>
         
         <div class="sort-container">
