@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.container {
+    background: #e8caca;
+    padding: 100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px white;
+    width: 700px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.todo-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.todo-input input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 4px;
+}
+
+.todo-input button {
+    padding: 10px 15px;
+    border: none;
+    background: green;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.todo-input button:hover {
+    background: rgb(172, 51, 51);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li .delete-btn {
+    color: #ff4d4f;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+li .delete-btn:hover {
+    color: #ff1a1a;
+}
+
+#clear-all {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    background: rgb(172, 51, 51);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#clear-all:hover {
+    background: #ff1a1a;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+/*  
+.filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+*/
+
+.filter-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #29892c;
+    color: white;
+}
+
+.filter-btn:hover {
+    background: rgb(172, 51, 51);
+}
+
+#priority {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+#deadline {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; 
+    text-align: center;
+    background-color: #f9f9f9; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 15px; 
+    outline: none; 
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #deadline:focus {
+    border: 1px solid #007bff; /* Blue border on focus */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Glow effect on focus */
+    background-color: #fff; /* Bright background when focused */
+  }
+  
+/*by priority, new to old, alphabetical order
+not show buttons when theres no task yet added
+different dates
+times
+calendar*/
