@@ -7,6 +7,7 @@ const sortDropdown = document.getElementById('sort-tasks');
 const sortButton = document.getElementById('sort-btn');
 
 
+
 // Function to create a new task element (Consolidated repetitive task creation logic)
 function createTaskElement(taskText, priority, isCompleted = false) {
     const listItem = document.createElement('li'); // Create a list item
@@ -247,7 +248,7 @@ function updatePendingMessage() {
   pendingMessage.id = 'pending-message';
   pendingMessage.textContent = `You have ${pendingCount} ${pendingCount === 1 ? 'task' : 'tasks'} pending`;
   pendingMessage.style.textAlign = 'center';
-  pendingMessage.style.color = 'purple';
+  pendingMessage.style.color = 'black';
 
   if (!document.getElementById('pending-message')) {
       todoList.parentElement.appendChild(pendingMessage); // Append the message
@@ -265,10 +266,10 @@ function updateCompletedMessage() {
   completedMessage.id = 'completed-message';
   completedMessage.textContent =
       completedCount === 0
-          ? 'Sorry🥺 You have no completed tasks!'
+          ? 'Sorry! You have no completed tasks!'
           : `You have ${completedCount} ${completedCount === 1 ? 'task' : 'tasks'} completed🎊🎉`;
   completedMessage.style.textAlign = 'center';
-  completedMessage.style.color = 'purple';
+  completedMessage.style.color = 'black';
 
   if (!document.getElementById('completed-message')) {
       todoList.parentElement.appendChild(completedMessage); // Append the message
@@ -378,3 +379,34 @@ document.addEventListener('DOMContentLoaded', () => {
     sortTasks(); // Apply the saved sort order
     updateMessages(); // Update pending and completed messages
 });
+
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+// Check localStorage to maintain dark mode on reload
+if (localStorage.getItem('darkMode') === 'enabled') {
+    enableDarkMode();
+} else {
+    disableDarkMode();
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        disableDarkMode();
+    } else {
+        enableDarkMode();
+    }
+});
+
+function enableDarkMode() {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️ Light Mode'; // Update button text
+    localStorage.setItem('darkMode', 'enabled'); // Save preference
+}
+
+function disableDarkMode() {
+    body.classList.remove('dark-mode');
+    darkModeToggle.textContent = '🌙 Dark Mode'; // Update button text
+    localStorage.setItem('darkMode', 'disabled'); // Save preference
+}

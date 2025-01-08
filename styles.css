@@ -1,21 +1,11 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f3f4f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 
-}
 
 .todo-icon-circle {
     width: 200px; 
     height: 200px; 
     object-fit: cover; 
     border-radius: 50%; 
-    margin: 0 auto; 
+    margin: auto; 
     display: block;
     border: 4px solid #e8caca; 
     margin-bottom: 10px;
@@ -23,14 +13,16 @@ body {
 }
 .container {
     background: #e8caca;
-    padding: 0px 100px;
+    padding: 10px 80px;
     justify-content: center;
     border-radius: 8px;
-    box-shadow: 0 4px 6px white;
-    width: 1000px;
+    box-shadow: 0 4px 6px #297373;
+    width: 1250px;
     text-align: center;
     overflow: hidden;
     overflow-y: auto;
+    margin-bottom: 7px;
+    margin-top: 7px;
     position: relative;
 }
 html, body {
@@ -41,12 +33,12 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: flex-start; 
-    background: #f3f4f6;
+    background: #E6E6E6;
 }
 
 h1 {
     margin-bottom: 20px;
-    color: #333;
+    color: #39393A;
 }
 
 .todo-input {
@@ -55,6 +47,7 @@ h1 {
     gap: 30px;
     margin-bottom: 20px;
     width: calc(100% - 150px);
+    color: #39393A;
     
     
 }
@@ -62,15 +55,20 @@ h1 {
 .todo-input input {
     width: 45%;
     padding: 15px;
-    border: 1px solid green;
+    border: 1px solid #297373;
     border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #39393A;
+    font-weight: bold;
+    font-size: 16px
+    
 }
 
 .todo-input button {
     padding: 18px;
     border: none;
-    background: green;
-    color: #fff;
+    background: #297373;
+    color: #54DDB8;
     border-radius: 4px;
     cursor: pointer;
     width: 100px;
@@ -84,27 +82,24 @@ li {
     background: #f9f9f9;
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #39393A;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 li .delete-btn {
-    color: #ff4d4f;
+    color: #297373;
     cursor: pointer;
-    border: 1px solid #8a6565;
+    border: 1px solid #297373;
     background: none;
+
 }
 
 li .delete-btn:hover {
     color: #ff1a1a;
-}
-
-li {
-    position: relative;
-    cursor: pointer;
 }
 
 li {
@@ -118,9 +113,9 @@ li::after {
     top: 50%;
     left: 100%; 
     font-size: 12px;
-    color: gray;
+    color: #297373;
     background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    border: 1px solid #297373;
     border-radius: 4px;
     padding: 5px;
     white-space: nowrap;
@@ -139,14 +134,14 @@ li:hover::after {
     margin-top: 20px;
     padding: 10px 15px;
     border: none;
-    background: rgb(172, 51, 51);
-    color: #fff;
+    background: #297373;
+    color: #54DDB8;
     border-radius: 4px;
     cursor: pointer;
 }
 
 #clear-all:hover {
-    background: #ff1a1a;
+    background: rgb(172, 51, 51);
 }
 
 .filters {
@@ -160,43 +155,38 @@ li:hover::after {
     padding: 8px 15px;
     border: none;
     border-radius: 4px;
-    background: #fff;
+    background: #f9f9f9;
     cursor: pointer;
 }
 
 .filter-btn.active {
-    background: green;
-    color: white;
+    background: #297373;
+    color: #54DDB8;
 }
 
 .filter-btn:hover {
     background: rgb(172, 51, 51);
-    color: white;
+    color: #54DDB8;
 }
 
 #deadline {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #297373;
     border-radius: 5px;
-    width: 200px; 
+    width:500px; 
     text-align: center;
     background-color: #f9f9f9; 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 4px 6px #297373; 
     margin-bottom: 15px; 
-    outline: none; 
+    outline: none;
+    color: #297373;
     transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-  
-  #deadline:focus {
-    border: 1px solid #007bff; /* Blue border on focus */
-    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Glow effect on focus */
-    background-color: #fff; /* Bright background when focused */
 }
 
 .completed {
     text-decoration: line-through; /* Strikethrough for completed tasks */
-    color: rgb(52, 48, 48); /* Dim the color */
+    color:  rgb(172, 51, 51); 
 }
 
 /* Priority dropdown container styling */
@@ -205,27 +195,35 @@ li:hover::after {
     align-items: center;
     gap: 10px;
     justify-content: center;
+    color: rgb(172, 51, 51);
+}
+
+.priority-container label {
+    font-weight: bold; /* Make the label bold */
+    font-size: 16px; /* Set font size */
+    color:  rgb(172, 51, 51); /* Darker text color */
 }
 
 /* Priority dropdown styling */
 #priority {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #297373;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #f9f9f9;
 }
 
 /* Hover and focus effect for the priority dropdown */
 #priority:hover {
-    border-color: #29892c; /* Slight green outline on hover */
-    background-color: #f4f9f4; /* Light green background */
+    border-color: #297373; /* Slight green outline on hover */
+    background-color: #f9f9f9; /* Light green background */
 }
 
 #priority:focus {
     outline: none;
-    border-color: #007bff; /* Blue border on focus */
-    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Blue glow effect */
+    border-color: rgb(172, 51, 51); 
+    box-shadow: 0px 4px 8px #297373; /* Blue glow effect */
 }
 
 
@@ -235,26 +233,42 @@ li:hover::after {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    color: rgb(172, 51, 51);
 }
 
 #sort-tasks {
     padding: 8px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #297373;
     border-radius: 4px;
+    color: #297373;
 }
 
 #sort-btn {
     padding: 8px 12px;
-    background-color: #29892c;
-    color: white;
+    background-color: #297373;
+    color: #54DDB8;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
+/* Style the label */
+.sort-container label {
+    font-weight: bold; /* Make the label bold */
+    font-size: 16px; /* Set font size */
+    color:  rgb(172, 51, 51); /* Darker text color */
+}
+
+/* Style the select dropdown */
+/* .sort-container select {
+    padding: 8px 12px;
+    color: red;
+    
+} */
+
 #sort-btn:hover {
-    background-color: #1e6722;
+    background-color: rgb(172, 51, 51);
 }
 
 .todo-list {
@@ -265,6 +279,122 @@ li:hover::after {
     
 }
 
+.navbar {
+    margin-top: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #e8caca; /* Match your container color */
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center; /* Center vertically */
+    padding: 20px 20px; /* Add some padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for the navbar */
+    position: sticky; /* Sticks to the top of the viewport when scrolling */
+    top: 0;
+    z-index: 10; /* Keep it above other elements */
+}
+
+body.dark-mode .navbar {
+    background-color: #887B5C; /* Dark mode background */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow for contrast */
+}
+.dark-mode-btn {
+    padding: 8px 12px;
+    border: none;
+    background-color: #297373;
+    color: #54DDB8;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dark-mode-btn:hover {
+    background-color: #666; 
+}
+
+.dark-mode h1 {
+    color: #E5D2B8; /* Light color for the heading */
+}
+
+.dark-mode #add-btn {
+    background-color: #042D29; /* Updated green for the Add button */
+    color: #fff; /* Light text */
+}
+.dark-mode #add-btn:hover {
+    background-color: #666; /* Lighter shade on hover */
+}
+
+/* .dark-mode .todo-input input {
+    color: RED; /* Light text color */
+    /*border: 1px solid #809671 ;*/
+
+.dark-mode .container {
+    background-color: #725C3A; /* Dark container */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+.dark-mode li {
+    background-color: #2c2c2c; /* Dark task background */
+    color: #ffffff; /* Light text */
+    border: 1px solid #444; /* Subtle border */
+}
+
+.dark-mode #deadline,
+.dark-mode #priority,
+.dark-mode input[type='text'] {
+    background-color: #929079; 
+    color: #fff; 
+    border-color: #555;
+}
+
+.dark-mode .priority-container label {
+    color: #ffffff; 
+    font-weight: bold; 
+}
+
+.dark-mode button {
+    background-color: #042D29; /* Dark buttons */
+    color: #fff; /* Light text */
+}
+
+.dark-mode button:hover {
+    background-color: #666; /* Slightly lighter on hover */
+}
+
+/* Dark Mode styles for Sort By container */
+
+.dark-mode .sort-container label {
+    color: #ffffff; 
+    font-weight: bold; 
+}
+
+.dark-mode .sort-container select {
+    background-color: #929079; 
+    border: 1px solid #555; 
+    border-radius: 4px; 
+    padding: 5px;
+    color: #fff;
+}
+
+.dark-mode #sort-btn {
+    background-color: #042D29; /* Dark background for the button */
+    color: #fff; /* Light text for the button */
+    border: none; /* No border */
+    padding: 8px 12px; /* Button padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.dark-mode #sort-btn:hover {
+    background-color: #666; /* Lighter shade on hover */
+}
+
+.dark-mode #clear-all {
+    background-color: #042D29; /* Slightly lighter on hover */
+    color: #fff;
+}
+.dark-mode #clear-all:hover {
+    background-color: #666; /* Slightly lighter on hover */
+}
 
 
 /*by priority, new to old, alphabetical order
