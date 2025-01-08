@@ -55,8 +55,14 @@ function createTaskElement(taskText, priority, isCompleted = false) {
 function addTask() {
     const taskText = input.value.trim(); // Get and trim the input value
     const priority = document.getElementById('priority').value; // Get the selected priority
+    const date = document.getElementById('deadline').value; // Get the selected date
+
     if (taskText === '') {
         alert('Please enter a task!'); // Alert if the input is empty
+        return;
+    }
+    if (date === '') {
+        alert('Please select a date!'); // Alert if no date is selected
         return;
     }
 
@@ -76,12 +82,62 @@ function addTask() {
     const newTask = createTaskElement(taskText, priority);
     todoList.appendChild(newTask);
     input.value = ''; // Clear the input field
-    saveTasks(); // Save the updated tasks
-    updateMessages(); // Update both pending and completed messages
-  }
+
+    saveTaskForDate(date, { //     // Save the task for the selected date
+      text: taskText,
+      priority: priority,
+      completed: false,
+  });
+
+  updateMessages(); // Update both pending and completed messages
+}
+
+// Save tasks for a specific date
+function saveTaskForDate(date, task) {
+    const tasksByDate = JSON.parse(localStorage.getItem('tasksByDate')) || {}; // Load existing tasks by date
+    if (!tasksByDate[date]) {
+        tasksByDate[date] = [];
+    }
+    tasksByDate[date].push(task); // Add the task to the specific date
+    localStorage.setItem('tasksByDate', JSON.stringify(tasksByDate)); // Save tasks back to localStorage
+}
+
+// Save tasks for the selected date
+function saveTasksForCurrentDate() { // Updated function to replace saveTasks
+    const date = document.getElementById('deadline').value;
+    if (date === '') {
+        alert('Please select a date to save tasks!');
+        return;
+    }
+
+    const tasks = Array.from(todoList.querySelectorAll('li')).map((listItem) => ({
+        text: listItem.querySelector('span').textContent,
+        priority: listItem.dataset.priority,
+        completed: listItem.classList.contains('completed'),
+    }));
+
+    const tasksByDate = JSON.parse(localStorage.getItem('tasksByDate')) || {};
+    tasksByDate[date] = tasks; // Update tasks for the current date
+    localStorage.setItem('tasksByDate', JSON.stringify(tasksByDate)); // Save tasks to localStorage
+}
+
+// Load tasks for the selected date
+function loadTasksForDate(date) {
+  const tasksByDate = JSON.parse(localStorage.getItem('tasksByDate')) || {}; // Load tasks by date
+  const tasksForDate = tasksByDate[date] || []; // Get tasks for the selected date
+
+  todoList.innerHTML = ''; // Clear the current tasks
+
+  tasksForDate.forEach((task) => {
+      const taskElement = createTaskElement(task.text, task.priority, task.completed);
+      todoList.appendChild(taskElement);
+  });
+
+  updateMessages(); // Update both pending and completed messages
+}
 
   // Function to create a delete button
-  function createDeleteButton() {
+function createDeleteButton() {
     const deleteBtn = document.createElement('button'); // Create a delete button
     deleteBtn.textContent = 'X'; // Add "X" as the button text
     deleteBtn.classList.add('delete-btn'); // Add a delete button class
@@ -158,6 +214,16 @@ function loadTasks() {
   });
 }
 
+// Save the selected sort order to localStorage
+function saveSortOrder(sortBy) {
+  localStorage.setItem('sortOrder', sortBy);
+}
+
+// Load the saved sort order from localStorage
+function loadSortOrder() {
+  return localStorage.getItem('sortOrder') || 'priority'; // Default to 'priority' if nothing is saved
+}
+
 // Get priority-specific CSS class
 function getPriorityClass(priority) {
   if (priority === 'high') return 'priority-high';
@@ -223,9 +289,25 @@ input.addEventListener('keydown', (event) => {
 
 // Clear all tasks
 clearAllButton.addEventListener('click', () => {
+  const date = document.getElementById('deadline').value;
+  if (date === '') {
+      alert('Please select a date to clear tasks!');
+      return;
+  }
+
+  const tasksByDate = JSON.parse(localStorage.getItem('tasksByDate')) || {};
+  delete tasksByDate[date]; // Remove tasks for the current date
+  localStorage.setItem('tasksByDate', JSON.stringify(tasksByDate));
+
   todoList.innerHTML = ''; // Clear all tasks from the DOM
   localStorage.removeItem('tasks'); // Clear tasks from localStorage
   updateMessages(); // Reset messages
+});
+
+// Listen for date changes and load tasks for the selected date
+document.getElementById('deadline').addEventListener('change', (event) => {
+    const selectedDate = event.target.value;
+    loadTasksForDate(selectedDate); // Load tasks for the new date
 });
 
 // Filter tasks
@@ -267,6 +349,9 @@ function sortTasks() {
   // Clear the list and append sorted tasks
   todoList.innerHTML = '';
   tasks.forEach(task => todoList.appendChild(task));
+
+      // Save the selected sort order
+  saveSortOrder(sortBy);
 }
 
 // Add filter button event listeners
@@ -284,5 +369,12 @@ sortButton.addEventListener('click', sortTasks);
 // Load tasks and update messages on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadTasks(); // Load tasks from localStorage
-  updateMessages(); // Update pending and completed messages
+  // Set the sort dropdown to the saved value
+  const savedSortOrder = loadSortOrder();
+  sortDropdown.value = savedSortOrder;
+
+  const selectedDate = document.getElementById('deadline').value;
+    loadTasksForDate(selectedDate); // Load tasks for the selected date
+    sortTasks(); // Apply the saved sort order
+    updateMessages(); // Update pending and completed messages
 });

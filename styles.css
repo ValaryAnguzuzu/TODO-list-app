@@ -134,27 +134,40 @@ li .delete-btn:hover {
     background-color: #fff; /* Bright background when focused */
 }
 
-/* General priority dropdown styling */
-#priority {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-}
-
-
 .completed {
     text-decoration: line-through; /* Strikethrough for completed tasks */
     color: rgb(52, 48, 48); /* Dim the color */
 }
 
-.priority-icon {
-    
-    margin-left: 10px; /* Add spacing between the task text and the priority label */
+/* Priority dropdown container styling */
+.priority-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
 }
+
+/* Priority dropdown styling */
+#priority {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover and focus effect for the priority dropdown */
+#priority:hover {
+    border-color: #29892c; /* Slight green outline on hover */
+    background-color: #f4f9f4; /* Light green background */
+}
+
+#priority:focus {
+    outline: none;
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2); /* Blue glow effect */
+}
+
 
 .sort-container {
     margin: 10px 0;
