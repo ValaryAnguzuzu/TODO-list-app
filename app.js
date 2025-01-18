@@ -8,7 +8,7 @@ const sortButton = document.getElementById('sort-btn');
 
 
 
-// Function to create a new task element (Consolidated repetitive task creation logic)
+// Function to create a new task element
 function createTaskElement(taskText, priority, isCompleted = false) {
     const listItem = document.createElement('li'); // Create a list item
     const checkbox = document.createElement('input'); // Create a checkbox
@@ -51,7 +51,6 @@ function createTaskElement(taskText, priority, isCompleted = false) {
     return listItem;
 }
 
-
 //Function to add a new task
 function addTask() {
     const taskText = input.value.trim(); // Get and trim the input value
@@ -68,12 +67,11 @@ function addTask() {
     }
 
     // Check for duplicate tasks
-    const existingTasks = Array.from(todoList.querySelectorAll('li')).map((li) =>
-        li.querySelector('input[type="checkbox"]')
-            ? li.textContent.replace(/\[.*\]/, '').replace('X', '').trim()
-            : li.textContent.trim()
-    );
-
+    const existingTasks = Array.from(todoList.querySelectorAll('li')).map((li) => {
+        const span = li.querySelector('span'); // Get the task text span
+        return span ? span.textContent.trim() : ''; // Ensure only task text is included
+    });
+    
     if (existingTasks.includes(taskText)) {
         alert('Task already exists!'); // Alert if a duplicate task is found
         return;

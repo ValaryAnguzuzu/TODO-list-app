@@ -1,23 +1,27 @@
 
 
 .todo-icon-circle {
-    width: 200px; 
-    height: 200px; 
+    width: 300px; 
+    height: 300px; 
     object-fit: cover; 
     border-radius: 50%; 
     margin: auto; 
     display: block;
     border: 4px solid #e8caca; 
     margin-bottom: 10px;
+    margin-top: -50px;
+    top: 0;
      
 }
+
 .container {
     background: #e8caca;
-    padding: 10px 80px;
+    padding: 0 80px;
     justify-content: center;
     border-radius: 8px;
     box-shadow: 0 4px 6px #297373;
     width: 13000px;
+    height: 800px;
     text-align: center;
     overflow: hidden;
     overflow-y: auto;
@@ -25,6 +29,8 @@
     margin-top: 7px;
     position: relative;
 }
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -60,8 +66,12 @@ h1 {
     background-color: #f9f9f9;
     color: #39393A;
     font-weight: bold;
-    font-size: 16px
+    font-size: 16px;
+    outline: none;
     
+}
+.todo-input input:focus {
+    outline: 1px solid #297373; 
 }
 
 .todo-input button {
@@ -278,27 +288,9 @@ li:hover::after {
     margin: 10px 0; 
     
 }
-
-.navbar {
-    margin-top: 0;
-    width: 100%;
-    height: 20px;
-    background-color: #e8caca; /* Match your container color */
-    display: flex;
-    justify-content: flex-end; /* Align content to the right */
-    align-items: center; /* Center vertically */
-    padding: 20px 20px; /* Add some padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for the navbar */
-    position: sticky; /* Sticks to the top of the viewport when scrolling */
-    top: 0;
-    z-index: 10; /* Keep it above other elements */
+.toggle.dark-mode{
+    background-color: #887B5C;
 }
-
-body.dark-mode .navbar {
-    background-color: #887B5C; /* Dark mode background */
-    box-shadow: 0 2px 4px #725C3A; /* Light shadow for contrast */
-}
-
 body.dark-mode .todo-icon-circle {
     border: 4px solid #725C3A;
 }
@@ -309,6 +301,7 @@ body.dark-mode .todo-icon-circle {
     color: #54DDB8;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .dark-mode-btn:hover {
@@ -327,12 +320,8 @@ body.dark-mode {
     color: #fff; 
 }
 .dark-mode #add-btn:hover {
-    background-color: #666; /* Lighter shade on hover */
+    background-color: #666; 
 }
-
-/* .dark-mode .todo-input input {
-    color: RED; /* Light text color */
-    /*border: 1px solid #809671 ;*/
 
 .dark-mode .container {
     background-color: #725C3A; 
@@ -359,12 +348,12 @@ body.dark-mode {
 }
 
 .dark-mode button {
-    background-color: #042D29; /* Dark buttons */
-    color: #fff; /* Light text */
+    background-color: #042D29; 
+    color: #fff; 
 }
 
 .dark-mode button:hover {
-    background-color: #666; /* Slightly lighter on hover */
+    background-color: #666; 
 }
 
 .dark-mode .sort-container label {
@@ -402,9 +391,104 @@ body.dark-mode {
 }
 
 
-/*by priority, new to old, alphabetical order
-not show buttons when theres no task yet added
-different dates
-times
-calendar*/
 
+@media (max-width: 768px) {
+    .container {
+        padding: 10px 40px;
+        max-width: 90%; /* width for tablets */
+    }
+
+    .todo-input {
+        gap: 15px;
+    }
+
+    #sort-btn, #clear-all {
+        width: 100%; /* Make buttons full width */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 18px; /* Reduce heading size */
+    }
+
+    .todo-input input,
+    #deadline {
+        font-size: 10px; /* Adjust font size */
+    }
+
+    .filters {
+        gap: 1px; /* Reduce gap between buttons */
+    }
+    todo-input input, .todo-input button {
+        padding: 10px; /* Reduce padding */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .filters {
+        flex-direction: column; /* Stack filters vertically */
+        gap: 5px; /* Reduce spacing */
+    }
+
+    .todo-icon-circle {
+        width: 150px; /* Smaller icon */
+        height: 150px;
+    }
+
+}
+
+/* General responsive layout for stacking elements on mobile devices */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center-align elements */
+        padding: 20px; /* Add padding for spacing */
+        gap: 15px; /* Add space between stacked elements */
+    }
+
+    .todo-input {
+        display: flex;
+        flex-direction: column; /* Stack input, priority, and button */
+        width: 100%; /* Full width for mobile */
+        gap: 10px; /* Add space between input, dropdown, and button */
+    }
+
+    .todo-input input, /* Task input bar */
+    .todo-input button, /* Add button */
+    #priority, /* Priority dropdown */
+    #deadline, /* Date picker */
+    #sort-btn, /* Sort button */
+    #clear-all { /* Clear All button */
+        width: 100%; /* Full width for mobile */
+        max-width: 400px; /* Optional max width to prevent stretching */
+    }
+
+    .filters {
+        flex-direction: column; /* Stack filter buttons */
+        gap: 10px; /* Add space between buttons */
+        width: 100%; /* Full width for filter buttons */
+    }
+
+    li {
+        flex-direction: column; /* Stack task content */
+        text-align: center; /* Center-align content */
+    }
+
+    .todo-icon-circle {
+        width: 80px; /* Adjust size for mobile */
+        height: 80px;
+    }
+
+    /* Ensure the Add Priority section stacks */
+    .priority-container {
+        flex-direction: column; /* Stack the label and dropdown */
+        align-items: flex-start; /* Align items to the left */
+        gap: 5px; /* Add space between the label and dropdown */
+        width: 100%; /* Full width */
+    }
+}
